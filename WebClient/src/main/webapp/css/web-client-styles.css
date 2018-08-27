@@ -1,0 +1,49 @@
+.web-client-chat-container {
+    width: 550px;
+    font-family: cursive;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.web-client-chat-container > label{
+    font-size: 18pt;
+    align-self: center;
+}
+
+.messages-area {
+    width: 500px;
+    height: 200px;
+    margin: 20px;
+    padding: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: none;
+    background: white;
+    resize: none;
+    font: inherit;
+}
+
+.message-input-container {
+    width: 500px;
+    height: 50px;
+    margin: 20px;
+}
+
+.message-input-box {
+    width: 440px;
+    padding: 2px;
+    font: inherit;
+    outline: none;
+    border: black 2px solid;
+}
+
+.message-send-button {
+    width: 55px;
+    padding: 2px;
+    font: inherit;
+    outline: none;
+    background: white;
+    border: black 2px solid;
+    cursor: pointer;
+}
