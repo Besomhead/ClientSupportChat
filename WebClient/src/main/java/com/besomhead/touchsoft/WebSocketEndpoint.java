@@ -5,10 +5,7 @@ import com.besomhead.touchsoft.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
+import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.net.Socket;
@@ -20,10 +17,12 @@ import static com.besomhead.touchsoft.ConsoleChatServer.REGISTER_KEY;
 public class WebSocketEndpoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketEndpoint.class);
     private Client client;
+    private AgentMessageHandler agentMessageHandler;
 
 
     @OnOpen
-    public void onOpen() {
+    public void onOpen(Session session) {
+        agentMessageHandler = new AgentMessageHandler(session);
         LOGGER.info("Open Connection with client ");
     }
 
@@ -35,7 +34,7 @@ public class WebSocketEndpoint {
     }
 
     @OnMessage
-    public String onMessage(String message) {
+    public void onMessage(String message) {
         if (message.startsWith(REGISTER_KEY)) {
             String name = message.substring(message.lastIndexOf(" "));
             try {
@@ -43,15 +42,12 @@ public class WebSocketEndpoint {
             } catch (IOException ex) {
                 LOGGER.error(ex.getMessage());
             }
+            agentMessageHandler.setUser(client);
+            new Thread(agentMessageHandler).start();
             client.sendMessageToUser(message);
-            return "";
         }
         client.sendMessageToUser(message);
         LOGGER.info("Message from the client: " + message);
-//        String echoMsg = client.getUserMessage();
-//        return echoMsg;
-        return "stub answer!";
-//        return client.getUserMessage();
     }
 
     @OnError
