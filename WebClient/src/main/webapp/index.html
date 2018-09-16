@@ -4,7 +4,17 @@
     <link type="text/css" rel="stylesheet" href="css/web-client-styles.css">
 </head>
 <body>
-<div class="web-client-chat-container">
+<div class="web-client-prompt" id="web-client-prompt">
+    <label for="web-client-username-input">Please introduce yourself</label>
+    <input class="web-client-username-input" type="text" id="web-client-username-input" placeholder="Wenya" autofocus>
+    <label for="web-client-role-selector">Choose your role</label>
+    <select id="web-client-role-selector" class="web-client-role-selector">
+        <option>client</option>
+        <option>agent</option>
+    </select>
+    <input class="web-client-prompt-submit" id="web-client-prompt-submit" type="button" value="Confirm">
+</div>
+<div class="web-client-chat-container web-client-chat-container-hidden" id="web-client-chat-container">
     <label for="web-client-messages-area">Welcome to Client Support Chat!</label>
     <textarea class="messages-area" id="web-client-messages-area" disabled></textarea>
     <div class="message-input-container">

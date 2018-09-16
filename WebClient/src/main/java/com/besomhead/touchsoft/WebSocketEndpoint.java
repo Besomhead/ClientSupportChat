@@ -10,8 +10,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.net.Socket;
 
-import static com.besomhead.touchsoft.ConsoleChatServer.EXIT_KEY;
-import static com.besomhead.touchsoft.ConsoleChatServer.REGISTER_KEY;
+import static com.besomhead.touchsoft.ConsoleChatServer.*;
 
 @ServerEndpoint("/chat")
 public class WebSocketEndpoint {
@@ -38,11 +37,11 @@ public class WebSocketEndpoint {
         if (message.startsWith(REGISTER_KEY)) {
             String name = message.substring(message.lastIndexOf(" "));
             try {
-                client = new Client(name, new User(new Socket("localhost", 9876)));
+                client = new Client(name, new User(new Socket(SERVER_HOST, SERVER_PORT)));
             } catch (IOException ex) {
                 LOGGER.error(ex.getMessage());
             }
-            agentMessageHandler.setUser(client);
+            agentMessageHandler.setClient(client);
             new Thread(agentMessageHandler).start();
             client.sendMessageToUser(message);
         }

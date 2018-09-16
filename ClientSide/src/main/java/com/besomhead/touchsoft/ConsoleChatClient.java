@@ -20,7 +20,7 @@ public class ConsoleChatClient {
     private void initConversation() {
         User user = new User();
         try {
-            user = new User(new Socket("localhost", 9876));
+            user = new User(new Socket(SERVER_HOST, SERVER_PORT));
 
             BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
 

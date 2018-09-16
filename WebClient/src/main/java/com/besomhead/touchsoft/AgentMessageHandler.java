@@ -8,20 +8,20 @@ import static com.besomhead.touchsoft.ConsoleChatServer.EXIT_KEY;
 
 public class AgentMessageHandler implements Runnable {
     private final Session session;
-    private Client user;
+    private Client client;
 
     public AgentMessageHandler(Session session) {
         this.session = session;
     }
 
-    public void setUser(Client user) {
-        this.user = user;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public void run() {
-        while (user.isActive()) {
-            String agentMessage = user.getUserMessage();
+        while (client.isActive()) {
+            String agentMessage = client.getUserMessage();
             if (agentMessage.startsWith(EXIT_KEY)) {
                 agentMessage = "Agent leaved the conversation";
             }

@@ -40,7 +40,7 @@ public class ChatServerThread implements Runnable {
         while (user.isActive()) {
             String userMessage = user.getUserMessage();
             String agentMessage = agent.getUserMessage();
-            if(userMessage == null || agentMessage == null){
+            if (userMessage == null || agentMessage == null) {
                 return;
             }
             if (userMessage.startsWith(EXIT_KEY)) {

@@ -12,6 +12,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ConsoleChatServer {
+    public static final String SERVER_HOST = "localhost";
+    public static final int SERVER_PORT = 9876;
     public static final String REGISTER_KEY = "/register";
     public static final String EXIT_KEY = "/exit";
     public static final String LEAVE_KEY = "/leave";

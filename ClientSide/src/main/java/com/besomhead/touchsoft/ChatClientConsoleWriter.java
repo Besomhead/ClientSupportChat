@@ -18,7 +18,7 @@ public class ChatClientConsoleWriter implements Runnable {
     public void run() {
         while (user.isActive()) {
             String answer = user.getUserMessage();
-            if(answer.startsWith(EXIT_KEY)){
+            if (answer.startsWith(EXIT_KEY)) {
                 break;
             }
             if (!answer.isEmpty()) {

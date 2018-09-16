@@ -29,7 +29,7 @@ public class ChatClientConsoleReader implements Runnable {
                 } else if (userMessage.startsWith(EXIT_KEY)) {
                     user.sendMessageToUser(userMessage);
                     break;
-                } else if (userMessage.startsWith(LEAVE_KEY)){
+                } else if (userMessage.startsWith(LEAVE_KEY)) {
                     continue;
                 }
                 user.sendMessageToUser(userMessage);
